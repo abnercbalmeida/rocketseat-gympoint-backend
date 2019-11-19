@@ -11,6 +11,10 @@ class Plan extends Model {
       { sequelize }
     );
   }
+
+  calculateTotalPrice() {
+    return this.price * this.duration;
+  }
 }
 
 export default Plan;
