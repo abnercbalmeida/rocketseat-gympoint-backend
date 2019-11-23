@@ -20,7 +20,7 @@ class CheckinController {
       where: {
         student_id: id,
       },
-    });
+    }).map(checkin => ({ checkin_at: checkin.created_at }));
 
     return res.json(checkins);
   }
@@ -57,11 +57,11 @@ class CheckinController {
       });
     }
 
-    const checkin = await Checkin.create({
+    const { student_id, created_at: checkin_at } = await Checkin.create({
       student_id: id,
     });
 
-    return res.json(checkin);
+    return res.json({ student_id, checkin_at });
   }
 }
 
